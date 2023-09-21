@@ -10,9 +10,14 @@ document.getElementById('botao')
 
         console.log(response.abilities)
 
+        let html_habilidades = ''
         for (const hab of response.abilities) {
             console.log(hab.ability.name)
+            html_habilidades += '<li>' +hab.ability.name+'</li>'
         }
+
+        let lista = document.getElementById('habilidades')
+        lista.innerHTML = html_habilidades
 
         console.log(response.sprites.front_default)
 
