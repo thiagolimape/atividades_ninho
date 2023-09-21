@@ -7,6 +7,9 @@ document.getElementById('botao')
     .then(function(response){
         return response.json()
     }).then(function(response){
+
+        console.log(response.abilities)
+
         console.log(response.sprites.front_default)
 
         let url = response.sprites.front_default
