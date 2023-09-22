@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pesquisa do Ninho (22.09) - Conceitos Importantes</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1 class="title">Pesquisa do Ninho (22.09) - Conceitos Importantes</h1>
+  </header>
+
+  <div class="menu">
+    <label for="pesquisa-dropdown">Selecione um tópico:</label>
+    <select id="pesquisa-dropdown" onchange="mostrarConteudo()">
+      <option value="" selected disabled>Escolha um tópico</option>
+      <option value="regra-pareto">Regra de Pareto</option>
+      <option value="paradoxo-pesticida">Paradoxo do Pesticida</option>
+      <option value="bug-bounty">Bug Bounty</option>
+    </select>
+  </div>
+
+  <div id="regra-pareto-content" class="content">
+    <h2 class="topic-title">Regra de Pareto</h2>
+    <p>
+      A <strong>Regra de Pareto</strong>, também conhecida como o princípio 80/20, sugere que, para muitos fenômenos, 80% dos efeitos vêm de 20% das causas.
+      No contexto do projeto Ninho, isso significa que focar em 20% das funcionalidades mais importantes pode resultar em 80% do valor para os usuários finais.
+    </p>
+    <p>
+      <strong>Origem:</strong> A regra de Pareto foi nomeada em homenagem ao economista italiano Vilfredo Pareto, que observou pela primeira vez essa proporção no contexto da distribuição de renda na sociedade.
+    </p>
+    <p>
+      <strong>Aplicação Atual:</strong> A regra de Pareto é aplicada em vários campos, incluindo negócios, economia, ciência de dados e gerenciamento de projetos, para identificar e priorizar as atividades mais impactantes.
+    </p>
+  </div>
+
+  <div id="paradoxo-pesticida-content" class="content">
+    <h2 class="topic-title">Paradoxo do Pesticida</h2>
+    <p>
+      O <strong>Paradoxo do Pesticida</strong> é uma metáfora que destaca o risco de focar exclusivamente em uma abordagem de "eliminar todos os bugs" sem considerar os efeitos colaterais.
+      No contexto do projeto Ninho, é fundamental equilibrar a correção de bugs com a manutenção da estabilidade do sistema e o desenvolvimento de novas funcionalidades.
+    </p>
+    <p>
+      <strong>Origem:</strong> O termo "Paradoxo do Pesticida" é frequentemente associado à indústria de pesticidas e ao uso excessivo de pesticidas levando à resistência de pragas.
+    </p>
+    <p>
+      <strong>Aplicação Atual:</strong> Na engenharia de software, esse paradoxo destaca a importância de uma abordagem equilibrada para garantia de qualidade, onde a estabilidade do sistema é mantida ao mesmo tempo em que os bugs são corrigidos.
+    </p>
+  </div>
+
+  <div id="bug-bounty-content" class="content">
+    <h2 class="topic-title">Bug Bounty</h2>
+    <p>
+      O <strong>Bug Bounty</strong> é um programa no qual uma organização oferece recompensas a indivíduos externos que encontram e relatam falhas de segurança em seus sistemas.
+      No projeto Ninho, implementar um programa de Bug Bounty pode ser uma estratégia eficaz para identificar e corrigir possíveis vulnerabilidades de forma colaborativa e proativa.
+    </p>
+    <p>
+      <strong>Origem:</strong> O conceito de Bug Bounty surgiu no início dos anos 90, mas ganhou popularidade com empresas de tecnologia que começaram a oferecer recompensas em troca de relatórios de bugs.
+    </p>
+    <p>
+      <strong>Aplicação Atual:</strong> Grandes empresas de tecnologia, como Google, Microsoft e Facebook, bem como muitas outras organizações, implementam programas de Bug Bounty para melhorar a segurança de seus produtos e serviços através da participação da comunidade de segurança.
+    </p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
