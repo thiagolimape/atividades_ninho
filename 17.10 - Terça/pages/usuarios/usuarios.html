@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Usuário</title>
+</head>
+<body>
+  <h1>Cadastrar Usuário</h1>
+  <form id="cadastrarUsuarioForm">
+    <label for="nome">Nome do Usuário:</label>
+    <input type="text" id="nome" name="nome" required><br><br>
+
+    <label for="senha">Senha do Usuário:</label>
+    <input type="text" id="senha" name="senha" required><br><br>
+    
+    <input type="submit" value="Cadastrar Usuário">
+  </form>
+
+  <script>
+    const form = document.getElementById('cadastrarUsuarioForm');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+
+      fetch('http://localhost:3000/usuarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Object.fromEntries(data)),
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('Usuário cadastrado com sucesso!');
+        // Você pode redirecionar o usuário para outra página ou fazer qualquer ação necessária aqui.
+      })
+      .catch(error => {
+        console.error('Erro ao cadastrar usuário:', error);
+      });
+    });
+  </script>
+</body>
+</html>

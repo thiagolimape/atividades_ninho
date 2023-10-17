@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Registro</title>
+
+    <!-- Adicione os links para o Bootstrap CSS e JavaScript via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h3 class="mt-5">Editar Livros</h3>
+        <form id="editar-form">
+           
+            <label for="titulo" class="form-label">Título:</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" required>
+            
+            <label for="autor" class="form-label">Autor:</label>
+            <input type="text" class="form-control" id="autor" name="autor" required>
+            
+            <label for="ano_publicacao" class="form-label">Ano de Publicação:</label>
+            <input type="number" class="form-control" id="ano_publicacao" name="ano_publicacao" required>
+            
+            <label for="categoria_id" class="form-label">Categoria:</label>
+            
+            <select id="categoria_id" class="form-select" name="categoria_id" required>
+             
+              <!-- Você pode adicionar mais opções de categoria conforme necessário -->
+            </select><br><br>
+
+
+            <input type="hidden" id="id" name="id">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+
+    <script>
+        async function carregarRegistroParaEdicao(id) {
+            try {
+                const response = await fetch(`http://localhost:3000/livros/${id}`);
+                const registro = await response.json();
+                document.getElementById('id').value = registro.id;
+                document.getElementById('titulo').value = registro.titulo;
+                document.getElementById('autor').value = registro.autor;
+                document.getElementById('ano_publicacao').value = registro.ano_publicacao;
+                document.getElementById('categoria_id').value = registro.categoria_id;
+            } catch (error) {
+                console.error('Erro ao carregar registro para edição:', error);
+            }
+        }
+        
+        document.getElementById('editar-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const form = document.getElementById('editar-form');
+            const id = document.getElementById('id').value;
+            const data = new FormData(form);
+
+            try {
+                const response = await fetch("http://localhost:3000/livros/"+id, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(Object.fromEntries(data)),
+                });
+
+                if (response.status === 200) {
+                    alert('Registro atualizado com sucesso!');
+                    window.location.href = 'tela/livros'; // Redirecionar de volta para a lista de registros
+                } else {
+                    alert('Erro ao atualizar o registro.');
+                }
+            } catch (error) {
+                console.error('Erro ao atualizar registro:', error);
+            }
+        });
+
+        async function carregarCategorias() {
+            try {
+                const response = await fetch('http://localhost:3000/categorias');
+                const paises = await response.json();
+
+                const selectPaises = document.getElementById('categoria_id');
+
+                paises.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id; // Ou algum valor único do país
+                    option.text = item.nome; // Ou algum campo que contenha o nome do país
+                    selectPaises.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Erro ao buscar países:', error);
+            }
+        }
+
+        carregarCategorias();
+
+        // Carregar o registro para edição quando a página carrega
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        carregarRegistroParaEdicao(id);
+    </script>
+</body>
+</html>

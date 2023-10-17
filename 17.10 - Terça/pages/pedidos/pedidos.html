@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Pedido</title>
+</head>
+<body>
+  <h1>Cadastrar Pedido</h1>
+  <form id="cadastrarPedidoForm">
+    <label for="usuario_id">ID do Usuário:</label>
+    <input type="number" id="usuario_id" name="usuario_id" required><br><br>
+    
+    <label for="livro_id">ID do Livro:</label>
+    <input type="number" id="livro_id" name="livro_id" required><br><br>
+
+    <label for="data_emprestimo">Data de Empréstimo:</label>
+    <input type="date" id="data_emprestimo" name="data_emprestimo" required><br><br>
+
+    <label for="data_devolucao">Data de Devolução:</label>
+    <input type="date" id="data_devolucao" name="data_devolucao" required><br><br>
+    
+    <input type="submit" value="Cadastrar Pedido">
+  </form>
+
+  <script>
+    const form = document.getElementById('cadastrarPedidoForm');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+
+      fetch('http://localhost:3000/pedidos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Object.fromEntries(data)),
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('Pedido cadastrado com sucesso!');
+        // Você pode redirecionar o usuário para outra página ou fazer qualquer ação necessária aqui.
+      })
+      .catch(error => {
+        console.error('Erro ao cadastrar pedido:', error);
+      });
+    });
+  </script>
+</body>
+</html>
